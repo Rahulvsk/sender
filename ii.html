@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WhatsApp Message Sender</title>
+  <style>
+    body {
+      background: #f0f2f5;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h2 {
+      color: #075e54;
+      margin-bottom: 1.5rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #25d366;
+      color: white;
+      font-size: 16px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #1ebe5b;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>📲 WhatsApp Message Sender</h2>
+
+    <input type="text" id="phone" placeholder="Enter 10-digit mobile number" maxlength="10" />
+
+    <select id="messageSelect">
+      <option value="1">Message 1 – Piyush Lunia</option>
+      <option value="2">Message 2 – Rakesh boriwal</option>
+      <option value="3">Message 3 – Udai Bhati</option>
+      <option value="4">Message 4 – Sahil</option>
+    </select>
+
+    <button onclick="sendWhatsApp()">Send Message</button>
+
+    <div class="note">Just enter number & select message</div>
+  </div>
+
+  <script>
+    // 🔁 Update contact name and number below only!
+    const contactName = "Piyush Lunia";
+    const contactPhone = "+91 90192 50256";
+
+    const contactName1 = "Rakesh Boriwal";
+    const contactPhone1 = "+91 7892393115";
+
+    const contactName2 = "Udai Bhati";
+    const contactPhone2 = "+91 9535494094";
+
+    const contactName3 = "Rakesh Boriwal";
+    const contactPhone3 = "+91 7892393115";
+
+    function sendWhatsApp() {
+      const phone = document.getElementById("phone").value.trim();
+      const msgOption = document.getElementById("messageSelect").value;
+
+      if (phone.length !== 10 || isNaN(phone)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+      }
+
+      const fullPhone = "91" + phone;
+
+      const messages = {
+        1: `Thank you for showing your interest in Sequence Surfaces Laminate at D-arc build Exhibition – 2025 at BIEC!
+
+While we connect with you shortly, 
+
+If you’re ever in Bangalore, we’d love to welcome you for a coffee and a tour of our Experience Center.
+Map for Direction - https://g.co/kgs/QX2is6Z
+
+Stay updated on the latest in laminate trends- follow us on Instagram!
+https://www.instagram.com/sequencesurfaces?igsh=dHR5NXYyZWY0M3d0  
+
+I’d truly love to connect with you — feel free to reach out anytime on the number I’ve shared below.
+${contactName} ${contactPhone}`,
+
+        2: `You’re always welcome at the Sequence Surfaces Experience Center, Bangalore! We'd love to show you the latest in laminates and design.
+
+Map - https://g.co/kgs/QX2is6Z
+Let’s grab a coffee when you’re in town!
+
+Connect with ${contactName1} – ${contactPhone1}`,
+
+        3: `Stay inspired with the latest laminate trends and project ideas!
+Follow us on Instagram - https://www.instagram.com/sequencesurfaces?igsh=dHR5NXYyZWY0M3d0
+
+For any queries, reach out to ${contactName2} – ${contactPhone2}`,
+
+        4: `Just checking in! If you had any questions about our laminates or your visit to D-arc Build 2025, feel free to reach out.
+
+We’re here to help:
+${contactName3} – ${contactPhone3}`
+      };
+
+      const message = messages[msgOption];
+      const encodedMsg = encodeURIComponent(message);
+      const url = `https://wa.me/${fullPhone}?text=${encodedMsg}`;
+
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
+</html>
